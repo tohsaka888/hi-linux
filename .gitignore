@@ -1,0 +1,7 @@
+*.txt
+*.out
+*.s
+*.i
+*.o
+*.class
+.vscode
