@@ -7,6 +7,12 @@
 
 #define MAX_CMD_LEN 1024
 
+/**
+fork之后当前线程（父线程）和子线程都会执行，通过pid判断是在父进程执行的还是子进程执行的，如果pid为0说明是在子进程执行的，pid>0说明是父进程执行的（pid）是子进程的id。
+
+注意：父进程和子进程是“并发”执行的，而不是“并行”执行的。
+*/
+
 int main() {
     char cmd[MAX_CMD_LEN];
     pid_t pid;
@@ -28,11 +34,15 @@ int main() {
         pid = fork();
         if (pid < 0) {
             perror("创建子进程失败");
-        // 0 代表进程创建成功
+            // 0 代表进程创建成功
         } else if (pid == 0) {
+            // printf("这是子进程");
             execlp(cmd, cmd, (char *)0);
             exit(127);
         }
+        // else {
+        //     printf("这是父进程");
+        // }
 
         if ((pid = waitpid(pid, &status, 0)) < 0) {
             perror("等待子进程失败");
