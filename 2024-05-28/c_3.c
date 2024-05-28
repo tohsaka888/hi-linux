@@ -21,6 +21,7 @@ int main() {
         printf("write failed\n");
         return -1;
     }
+    // SEEK to buf1 length
 
     off_t offset = lseek(fd, 16384, SEEK_SET);
     if (offset == -1) {
