@@ -1,7 +1,9 @@
 {
   "files.associations": {
+    "*.md": "markdown",
     "stdio.h": "c",
     "stat.h": "c",
-    "types.h": "c"
+    "types.h": "c",
+    "string.h": "c"
   }
 }
