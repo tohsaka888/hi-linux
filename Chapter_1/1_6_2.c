@@ -20,12 +20,13 @@ int main(void)
         {
             buf[strlen(buf) - 1] = '\0';
         }
-
-        if ((pid = fork()) < 0)   //fork()创建一个新进程，此进程为子进程
+        
+        pid = fork();
+        if (pid < 0)   //fork()创建一个新进程，此进程为子进程
         {
             perror("fork error");
         }
-        else if (pid  == 0)   //正在运行子进程    //pid已在if条件中创建，再else中再次调用fork，会导致多余的子进程创建
+        else if (pid == 0)   //正在运行子进程    //pid已在if条件中创建，再else中再次调用fork，会导致多余的子进程创建
         {
             execlp(buf,buf,(char *)0);  //获取buf中的指令，并运行
             exit(127);  //如果 execlp() 函数执行失败（即无法找到要执行的命令），子进程会以状态码 127 退出
