@@ -43,6 +43,6 @@ int main()
 	// （如前所述，由于历史原因，前3个标志的值分别是0、1和2。这5个值互斥，一个文件的访问方式只能取这5个值之一）。
 
 	// 可以更改的几个标志是：O_APPEND、O_NONBLOCK、O_SYNC、O_DSYNC、O_RSYNC、O_FSYNC和O_ASYNC。
+	set_fl(fd, O_NONBLOCK, 0);
 	set_fl(fd, O_APPEND, 0);
-	set_fl(fd, O_APPEND, 1);
 }

@@ -3,7 +3,7 @@
     "*.md": "markdown",
     "stdio.h": "c",
     "stat.h": "c",
-    "types.h": "c",
-    "string.h": "c"
-  }
+    "types.h": "c"
+  },
+  "C_Cpp.intelliSenseEngine": "disabled"
 }
