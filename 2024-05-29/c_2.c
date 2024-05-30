@@ -12,21 +12,26 @@ int fake_dup2(int oldfd, int newfd)
 	int fd_copied;
 	int i = 0;
 
+	// 给定文件描述符超出范围
 	if(newfd > MAX_CACHED_FDS)
 	{
 		printf("error: newfd is too large\n");
 		exit(1);
 	}
 
+	// 在满足newfd之前不停复制文件描述符
+	// 直到newfd被复制
+	// 缓存占位文件描述符
 	while((fd_copied = dup(oldfd)) != newfd)
 	{
 		cached_fds[i] = fd_copied;
 		i++;
 	}
 
+	// 关闭缓存文件
 	for(int j = 0; j < i; j++)
 	{
-		int cached_fd = cached_fds[i];
+		int cached_fd = cached_fds[j];
 		close(cached_fd);
 	}
 
@@ -55,6 +60,7 @@ int main()
 		return 1;
 	}
 	int fd1 = fake_dup2(fd, 10);
+	// 测试new_fd和origin_fd是否指向同一文件
 	result = test_fake_dup2(fd, fd1);
 	printf("Result: %d\n", result);
 	if(result == 1)
